@@ -1,0 +1,37 @@
+product                          Category
+id
+name
+description
+price
+costprice
+addeddate
+image
+quantity
+status
+
+
+
+Hospital
+-> Doctors
+-> Nurses
+-> Patitents
+-> Wards
+-> Patient ward
+-> Department (Staff ra department ko relationship hunu paryoo)
+
+
+
+
+loop lagayera aasti ko design banaune.(advertisement).
+models vanney folder banaune
+product_model.php
+
+
+
+random quote and random image.
+box banaunu paryoo according to user input..
+calculator pani banaunu paryoo pasa.
+
+
+admin through activate
+

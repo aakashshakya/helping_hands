@@ -1,0 +1,95 @@
+Create database Company
+
+Create table employee(emp_no int not null, emp_name varchar(), salary decimal(10,2), dep_no int, job_id int, primary key(emp_no))
+
+Create table department(Depno int not null, Depname varchar(), location varchar(), primary key(Depno))
+
+Create table job(job_id int not null, title varchar(),duration datetime, primary key(job_id))
+
+Insert into employee/department/job values (…), (…), (…), …
+
+Alter table employee add post varchar(25)
+
+Alter table employee drop salary
+
+Drop table employee
+
+Create table employee(emp_no int not null, emp_name varchar(), salary decimal(10,2), dep_no int, job_id int)
+
+Alter table employee add primary key(emp_no)
+Update employee set salary = salary * 1.05 where emp_name = “sam”
+update employee set salary = salary * 1.06 where salary > 10000;
+update employee set salary = salary * 1.05 where salary <= 10000
+update employee set salary = case 
+when salary <= 10000 then salary * 1.05
+else
+salary * 1.06
+end
+delete from employee
+delete from `employee` WHERE salary > 10000
+delete from employee where emp_name = "danish" and (salary > 10000 and salary <= 50000)
+
+select * from employee where salary < (select avg(salary) from employee)
+
+Drop table if exists avg;
+
+Create table avg as (select avg(salary) as sal from employee);
+
+Delete from employee where salary < ( select sal from avg);
+Drop avg;
+
+create database Film
+
+create table movie(title varchar(50), years int, length int, incolor bool, sutdioname varchar(100), producer varchar(50), primary key(title))
+
+create table starsin(movietitle varchar(50), movieyear int, starname varchar(100), primary key(movietitle))
+
+create table moviestar(name varchar(100), address varchar(1000), gender bool, birthdate date, primary key(name))
+
+create table movieexec(name varchar(50), address varchar(1000), cert varchar(50), networth decimal(10,2), primary key(name))
+
+create table studio(name varchar(100), address varchar(1000), presc varchar(50), primary key(name))
+
+insert into movie values ("Love is in the air",1980,3,1,"MGM","Sujan"),("Love in Paris",1991,4,1,"Touch Stone","Raju"),("True Blood",2009,3,1,"Village Road","Aakash"),("Friends with Benefit",2008,3,1,"Rouge","Sanjay"),("The Social Network",2011,2,1,"Paramount","Susan")
+
+select e.Fname,e.Minit,e.Lname,s.Lname from employee as e, employee as s where(e.Superssn=s.SSN)
+
+SELECT concat(Fname, Minit, Lname)as Name FROM `employee` WHERE Address="Houston Tx"
+
+select concat(Fname,Minit,Lname) as name from employee where Bdate between "1950-01-01" and "1959-12-31"
+
+select concat(Fname,Minit,Lname) as name from employee where ((Salary between 30000 and 40000) and (Dno = 5))
+
+select sum(salary) as Sum,max(salary) as Maximum, min(salary) as Minimum, avg(salary) as Average from employee
+
+select sum(salary) as Sum,max(salary) as Maximum,avg(salary) as Average from employee e,department d where(e.Dno=d.Dnumber and d.Dname="research")
+
+select concat(Fname,Minit,Lname) as Name from employee where Salary <> 50000
+
+select concat(Fname,Minit,Lname) as Name from employee where Address not like "%Road%" and Address not like "%Street%"
+
+select concat(Fname,Minit,Lname) as Name from employee where Address in("Patan","Kathmandu","Bhaktapur","Kirtipur")
+
+select Pname from project where Pnumber IN (5,10,15)
+
+select concat(Fname,Minit,Lname) as Name from employee as e,department as d where ( e.Dno=d.Dnumber and d.Dname not in ("Salesman","Clerk","Analyst"))
+
+select concat(Fname,Minit,Lname) as Name, Salary from employee order by Salary asc
+
+select concat(Fname,Minit,Lname) as Name, Salary from employee order by Salary desc
+
+select concat(Fname,Minit,Lname) as Name, SSN, Dno,Salary from employee order by Name, Dno, Salary
+
+select concat(Fname,Minit,Lname) as Name , Salary*12 as AnnualSalary from employee order by AnnualSalary desc
+
+select count(Fname) from employee
+
+select count(Fname) from employee as e,department as d where (e.Dno=d.Dnumber and d.Dname="research")
+
+select count(distinct Salary) from employee
+
+select d.Dnumber,count(e.Fname) as Number, avg(Salary) from employee as e, department as d where d.Dnumber=e.Dno  group by d.Dname
+
+Select Pnumber,Pname,count(w.ESSN) from project as p inner join works_on as w on p.Pnumber = w.PNO group by w.PNO
+
+select p.Pnumber, p.Pname, count(w.ESSN) as number from project as p inner join works_on as w on p.Pnumber = w.PNO group by p.Pnumber having number>2
