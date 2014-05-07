@@ -1,6 +1,0 @@
-create database dbname
-use dbname.
-C	Create
-R	Read(Select)
-U	Update
-D	Delete
