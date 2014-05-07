@@ -17,7 +17,7 @@ Drop table employee
 Create table employee(emp_no int not null, emp_name varchar(), salary decimal(10,2), dep_no int, job_id int)
 
 Alter table employee add primary key(emp_no)
-Update employee set salary = salary * 1.05 where emp_name = “sam”
+Update employee set salary = salary * 1.05 where emp_name = “sam”lsfjljfsljlfskjlfskj
 update employee set salary = salary * 1.06 where salary > 10000;
 update employee set salary = salary * 1.05 where salary <= 10000
 update employee set salary = case 
