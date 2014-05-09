@@ -27,6 +27,7 @@ Add Beneficial</a>
         <div class="span8">
        <label>Event:</label>
  <select name="event_id" id="event_id" >
+ <option value="">Select Event</option>
     <?php
 	foreach($events as $event){
     ?>
@@ -34,7 +35,7 @@ Add Beneficial</a>
     <?php
 	}
 	?></select>
-  <a href="<?php echo site_url('events/admin/events/add')?>" target="_blank">Add Event</a>
+  <a href="javascript:void(0)" onclick="beneficial.reloadEvent()">Refresh</a> <a href="<?php echo site_url('events/admin/events/add')?>" target="_blank">Add Event</a>
         </div>
         <div class="span8">
         <label>Status:</label>
@@ -119,7 +120,18 @@ var beneficial={
 				$.get('<?php echo site_url('beneficial/admin/beneficials/lists')?>',null,function(data){
 					$('#beneficial-list-block').html(data);
 				});			
+			},
+			reloadEvent:function()
+			{
+				$obj = $('#event_id');
+				$obj.html('<option value="">Select Event</option>');
+				$.getJSON('<?php echo site_url('events/admin/events/json')?>',null,function(data){
+					$.each(data.events,function(i,o){
+						$obj.append('<option value="'+o.event_id+'">'+o.event_name+'</option>');
+					});
+				});				
 			}
+			
 	};
 
 
