@@ -44,11 +44,11 @@ class Beneficials extends Admin_Controller {
     
     public function edit($id)
     {
-        $data['view_page']='beneficial/admin/edit.php';
+        $data['view_page']='beneficial/admin/edit';
         $beneficial=$this->beneficial_model->getBeneficials(array('beneficial_id'=>$id))->row_array();
         $data['events']=$this->event_model->getEvents()->result_array();
         $data['header']='Edit '.$beneficial['beneficial_name'];  
-        $data['beneficial']=$beneficial;
+        $data['beneficials']=$beneficial;
         $this->load->view($this->_container,$data);
     }
     
@@ -99,7 +99,7 @@ class Beneficials extends Admin_Controller {
 		$id=$this->input->get('id');
 		if($id)
 		{
-			$rows=$this->alert_model->getBeneficials(array('beneficial_id'=>$id))->row_array();
+			$rows=$this->beneficial_model->getBeneficials(array('beneficial_id'=>$id))->row_array();
 	     	echo json_encode($rows);	
 		}
 	}
