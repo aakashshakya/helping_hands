@@ -63,13 +63,13 @@ var beneficial={
 						$('#beneficial_address').val('');
 						$('#event_id').val('');
 						$('#status_1').prop('checked',true);
-						$('#myModalLabel').html('Add Alert');
+						$('#myModalLabel').html('Add Beneficial');
 						$('#myModal').modal();	
 						$('#beneficial_name').focus();
 			},
 			edit:function(id)
 			{
-				$.getJSON('<?php echo site_url('beneficial/admin/beneficial/getByIdJSON')?>',{id:id},function(data){
+				$.getJSON('<?php echo site_url('beneficial/admin/beneficials/getByIdJSON')?>',{id:id},function(data){
 					$('#beneficial_id').val(data.beneficial_id);
 					$('#beneficial_name').val(data.beneficial_name);
 					$('#beneficial_address').val(data.beneficial_address);
@@ -82,7 +82,7 @@ var beneficial={
 					{
 						$('#status_0').prop('checked',true);
 					}
-					$('#myModalLabel').html('Edit Alert');
+					$('#myModalLabel').html('Edit Beneficial');
 					$('#myModal').modal();
 				});				
 			},
