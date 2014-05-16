@@ -45,7 +45,7 @@ Add Beneficial</a>
         <input type="hidden" id="beneficial_id" name="beneficial_id"/>     
       </div>
       <div class="modal-footer">
-       <button type="button" class="btn btn-primary" id="btn-save" onclick="return beneficial.save()">Save</button>
+       <button type="button" class="btn btn-primary" id="btn-save" onclick="return beneficial.saveJson()">Save</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
        
       </div>
@@ -87,8 +87,8 @@ var beneficial={
 					$('#myModal').modal();
 				});				
 			},
-			save:function()
-			{		$.post('<?php echo site_url('beneficial/admin/beneficials/save')?>',$('#beneficial-form').serialize(),function(data){
+			saveJson:function()
+			{		$.post('<?php echo site_url('beneficial/admin/beneficials/saveJson')?>',$('#beneficial-form').serialize(),function(data){
 						if(data.success)
 						{
 							//$('#myModal').modal('hide');

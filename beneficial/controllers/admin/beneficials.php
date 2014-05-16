@@ -52,7 +52,7 @@ class Beneficials extends Admin_Controller {
         $this->load->view($this->_container,$data);
     }
     
-		public function save()
+		public function saveJson()
 	{
 		//$data=array('alert_name'=>$this->input->post('alert_name'));
 		$data=$this->_get_posted_data();
@@ -71,6 +71,20 @@ class Beneficials extends Admin_Controller {
 		//$this->alert_model->delete('ALERTS',array('alert_id'=>2));
 		//echo $this->db->last_query();
 	}
+	  public function save()
+    {
+        $data=$this->_get_posted_data();
+        if($this->input->post('beneficial_id')=='')
+        {
+            $this->beneficial_model->insert('BENEFICIALS',$data);
+            redirect(site_url('beneficial/admin/beneficials'));
+        }
+        else
+        {
+            $this->beneficial_model->update('BENEFICIALS',$data,array('beneficial_id'=>$data['beneficial_id']));
+            redirect(site_url('beneficial/admin/beneficials'));
+        }
+    }
     
     public function remove($id)
     {
@@ -91,7 +105,7 @@ class Beneficials extends Admin_Controller {
 	
 	public function json(){
 		$rows=$this->beneficial_model->getBeneficials()->result_array();
-	     echo json_encode($rows);
+	     echo json_encode(array('beneficial'=>$rows));
 	}
 	
 	public function getByIdJSON()

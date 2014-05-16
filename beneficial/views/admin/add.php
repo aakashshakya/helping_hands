@@ -1,6 +1,6 @@
 <body>
 <h2><span class="label label-primary">Add Beneficial</span></h2>
-<form action="<?php echo site_url('beneficial/admin/save');?>" method="post" class="navbar-form navbar-left">
+<form action="<?php echo site_url('beneficial/admin/beneficials/save');?>" method="post" class="navbar-form navbar-left">
 <div class="form-group">
 <table class="table">
   <tr>
@@ -24,7 +24,7 @@
     <?php
 	}
 	?></select>
-  <a href="<?php echo site_url('events/admin/events/add')?>" target="_blank">Add Event</a></td></td>
+    <a href="javascript:void(0)" onclick="beneficial.reloadEvent()">Refresh</a> <a href="<?php echo site_url('events/admin/events/add')?>" target="_blank">Add Event</a></td></td>
   </tr>
   <tr>
     <td class="navbar-brand">Status:</td>
@@ -37,9 +37,24 @@
     <td class="navbar-brand">&nbsp;</td>
     <td><input type="submit" name="submit" id="submit" value="Submit" /> 
     <input type="button" name="notify" id="notify" value="Submit and Notify"/>
-      <a href="<?php echo site_url('admin/beneficials')?>">Cancel</a></td>
+      <a href="<?php echo site_url('beneficial/admin/beneficials')?>">Cancel</a></td>
   </tr>
  
 </table>
 </div>
 </form>
+<script>
+var beneficial={
+	reloadEvent:function()
+			{
+				$obj = $('#event_id');
+				$obj.html('<option value="">Select Event</option>');
+				$.getJSON('<?php echo site_url('events/admin/events/json')?>',null,function(data){
+					$.each(data.events,function(i,o){
+						$obj.append('<option value="'+o.event_id+'">'+o.event_name+'</option>');
+					});
+				});				
+			}
+			
+	};
+</script>
